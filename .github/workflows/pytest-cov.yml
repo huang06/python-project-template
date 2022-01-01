@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  pytest-cov:
+  mockproj:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -23,19 +23,28 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.8'
+      - name: Create mock project
+        run: |
+            if grep -q "addopts = \"--cov mockproj" pyproject.toml; then
+              echo "Creating a mock Python project for pytest"
+              mkdir mockproj
+              touch mockproj/__init__.py
+              cat << EOF > mockproj/app.py
+            def main():
+                return True
+            EOF
+              mkdir tests
+              touch tests/__init__.py
+              cat << EOF > tests/test_app.py
+            from mockproj.app import main
+            def test_main():
+                assert main() is True
+            EOF
+            fi
       - name: Install packages with pipenv
         run: |
           python3 -m pip install pipenv
           pipenv install --dev --system --skip-lock
-      - name: Create a mock project
-        run: |
-          mkdir -p myproj
-          touch myproj/__init__.py
-          cat << EOF > myproj/app.py
-          import logging
-          logging.basicConfig(loglevel=logging.INFO)
-          logging.info("Hi")
-          EOF
       - name: Run pytest-cov
         run: |
           python3 -m pytest tests -vs

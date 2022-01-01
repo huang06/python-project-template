@@ -17,7 +17,7 @@ ignore_missing_imports = true
 profile = "black"
 
 [tool.pytest.ini_options]
-addopts = "--cov myproj --cov-report term-missing --cov-fail-under 80"
+addopts = "--cov mockproj --cov-report term-missing --cov-fail-under 100"
 # filterwarnings = [
 #     "ignore::DeprecationWarning",
 # ]
