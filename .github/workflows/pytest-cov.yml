@@ -27,6 +27,15 @@ jobs:
         run: |
           python3 -m pip install pipenv
           pipenv install --dev --system --skip-lock
+      - name: Create a mock project
+        run: |
+          mkdir -p myproj
+          touch myproj/__init__.py
+          cat << EOF > myproj/app.py
+          import logging
+          logging.basicConfig(loglevel=logging.INFO)
+          logging.info("Hi")
+          EOF
       - name: Run pytest-cov
         run: |
-          python3 -m pytest tests -v -s
+          python3 -m pytest tests -vs
