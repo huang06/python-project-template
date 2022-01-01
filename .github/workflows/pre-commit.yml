@@ -1,0 +1,25 @@
+---
+name: pre-commit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install packages with pipenv
+        run: |
+          python3 -m pip install -U pip setuptools wheel
+          python3 -m pip install pipenv
+          pipenv install --dev --system
+      - uses: pre-commit/action@v2.0.0
+        with:
+          extra_args: "-v -a"
