@@ -25,7 +25,7 @@ jobs:
           python-version: '3.8'
       - name: Create mock project
         run: |
-            if grep -q "addopts = \"--cov mockproj" pyproject.toml; then
+            if grep -q "^addopts = \"--cov mockproj .*" pyproject.toml; then
               echo "Creating a mock Python project for pytest"
               mkdir mockproj
               touch mockproj/__init__.py
