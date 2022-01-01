@@ -1,0 +1,32 @@
+name: pytest-cov
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  pytest-cov:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tz: [UTC]
+    steps:
+      - name: Set Timezone
+        uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: ${{ matrix.tz }}
+      - name: Display system date and time
+        run: date
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Install packages with pipenv
+        run: |
+          python3 -m pip install pipenv
+          pipenv install --dev --system --skip-lock
+      - name: Run pytest-cov
+        run: |
+          python3 -m pytest tests -v -s
