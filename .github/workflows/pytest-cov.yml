@@ -1,0 +1,50 @@
+name: pytest-cov
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  mockproj:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tz: [UTC]
+    steps:
+      - name: Set Timezone
+        uses: szenius/set-timezone@v1.0
+        with:
+          timezoneLinux: ${{ matrix.tz }}
+      - name: Display system date and time
+        run: date
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - name: Create mock project
+        run: |
+            if grep -q "addopts = \"--cov mockproj" pyproject.toml; then
+              echo "Creating a mock Python project for pytest"
+              mkdir mockproj
+              touch mockproj/__init__.py
+              cat << EOF > mockproj/app.py
+            def main():
+                return True
+            EOF
+              mkdir tests
+              touch tests/__init__.py
+              cat << EOF > tests/test_app.py
+            from mockproj.app import main
+            def test_main():
+                assert main() is True
+            EOF
+            fi
+      - name: Install packages with pipenv
+        run: |
+          python3 -m pip install pipenv
+          pipenv install --dev --system --skip-lock
+      - name: Run pytest-cov
+        run: |
+          python3 -m pytest tests -vs
