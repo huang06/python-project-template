@@ -4,10 +4,10 @@ PIPENV_VENV_IN_PROJECT=1
 .PHONY: all
 all:
 
-.PHONY: pipenv
+.PHONY: python
 python:
 	rm -rf .venv
-	pipenv sync --dev -v
+	pipenv sync -v
 
 .PHONY: devel
 devel:
