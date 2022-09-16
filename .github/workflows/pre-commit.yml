@@ -19,5 +19,5 @@ jobs:
         run: |
           python3 -m pip install -U pip setuptools wheel
           python3 -m pip install pipenv
-          pipenv install --dev --system
+          pipenv sync --dev --system
       - uses: pre-commit/action@v3.0.0
