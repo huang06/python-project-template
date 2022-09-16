@@ -27,7 +27,7 @@ repos:
       - id: python-use-type-annotations
       - id: python-no-log-warn
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.37.3
+    rev: v2.38.0
     hooks:
       - id: pyupgrade
         args: ["--py38-plus"]
@@ -41,7 +41,7 @@ repos:
       - id: markdownlint
         args: [-s, .markdownlint.rb]
   - repo: https://github.com/adrienverge/yamllint
-    rev: v1.27.1
+    rev: v1.28.0
     hooks:
       - id: yamllint
   - repo: https://github.com/PyCQA/flake8
