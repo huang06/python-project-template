@@ -1,0 +1,15 @@
+---
+version: '3'  # optional since v1.27.0
+services:
+  python-project-template:
+    build:
+      args:
+        LOGLEVEL: DEBUG
+    image: myregistry.io/library/python-project-template:1.0.0
+    entrypoint:
+      - /bin/bash
+      - -c
+    command:
+      - python3 -c 'from myproj.demo import print_string; print_string(123);'
+    stdin_open: true
+    tty: true
