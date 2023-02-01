@@ -1,5 +1,9 @@
 # Python Project Template
 
+[![Build Status](https://github.com/huang06/python-project-template/actions/workflows/pre-commit.yaml/badge.svg)](https://github.com/huang06/python-project-template/workflows)
+[![codecov](https://codecov.io/gh/huang06/python-project-template/branch/main/graph/badge.svg)](https://codecov.io/gh/huang06/python-project-template)
+[![Repo Size](https://img.shields.io/github/repo-size/huang06/python-project-template)](https://img.shields.io/github/repo-size/huang06/python-project-template)
+
 ## Features
 
 ### Github workflows
