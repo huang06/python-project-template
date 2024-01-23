@@ -1,4 +1,4 @@
-FROM docker.io/library/python:3.10.7-slim-buster
+FROM docker.io/library/python:3.10.13-slim-buster
 ARG LOGLEVEL
 ENV LOGLEVEL=${LOGLEVEL}
 WORKDIR /srv/python-project-template
