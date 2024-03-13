@@ -55,7 +55,7 @@ repos:
       - id: isort
         name: Sort imports in Python files
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.8.0
+    rev: v1.9.0
     hooks:
       - id: mypy
         additional_dependencies:
@@ -63,7 +63,7 @@ repos:
           - types-requests
           - types-pytz
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.7.1
+    rev: 1.8.4
     hooks:
       - id: nbqa-black
       - id: nbqa-pyupgrade
