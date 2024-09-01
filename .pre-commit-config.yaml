@@ -32,7 +32,7 @@ repos:
       - id: pyupgrade
         args: ["--py38-plus"]
   - repo: https://github.com/psf/black
-    rev: 24.4.2
+    rev: 24.8.0
     hooks:
       - id: black
   - repo: https://github.com/adrienverge/yamllint
@@ -40,7 +40,7 @@ repos:
     hooks:
       - id: yamllint
   - repo: https://github.com/PyCQA/flake8
-    rev: 7.1.0
+    rev: 7.1.1
     hooks:
       - id: flake8
   - repo: https://github.com/PyCQA/pydocstyle
@@ -55,7 +55,7 @@ repos:
       - id: isort
         name: Sort imports in Python files
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.11.1
+    rev: v1.11.2
     hooks:
       - id: mypy
         additional_dependencies:
@@ -63,7 +63,7 @@ repos:
           - types-requests
           - types-pytz
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.8.5
+    rev: 1.8.7
     hooks:
       - id: nbqa-black
       - id: nbqa-pyupgrade
@@ -83,7 +83,7 @@ repos:
     hooks:
       - id: shellcheck
   - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v3.3.0
+    rev: v3.4.0
     hooks:
       - id: conventional-pre-commit
         stages: [commit-msg]
